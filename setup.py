@@ -314,7 +314,8 @@ if "--cuda_ext" in sys.argv:
     if int(bare_metal_major) >= 11:
         cc_flag = []
         cc_flag.append("-gencode")
-        cc_flag.append("arch=compute_80,code=sm_80")
+        cc_flag.append("arch=compute_90,code=sm_90")
+        # cc_flag.append("arch=compute_80,code=sm_80")
         if int(bare_metal_minor) > 0:
             cc_flag.append("-gencode")
             cc_flag.append("arch=compute_86,code=sm_86")
@@ -474,7 +475,8 @@ if "--fast_layer_norm" in sys.argv:
     _, bare_metal_major, _ = get_cuda_bare_metal_version(CUDA_HOME)
     if int(bare_metal_major) >= 11:
         cc_flag.append("-gencode")
-        cc_flag.append("arch=compute_80,code=sm_80")
+        cc_flag.append("arch=compute_90,code=sm_90")
+        # cc_flag.append("arch=compute_80,code=sm_80")
 
     ext_modules.append(
         CUDAExtension(
@@ -520,7 +522,8 @@ if "--fmha" in sys.argv:
     if int(bare_metal_major) < 11:
         raise RuntimeError("--fmha only supported on SM80")
     cc_flag.append("-gencode")
-    cc_flag.append("arch=compute_80,code=sm_80")
+    cc_flag.append("arch=compute_90,code=sm_90")
+    # cc_flag.append("arch=compute_80,code=sm_80")
 
     ext_modules.append(
         CUDAExtension(
@@ -570,7 +573,8 @@ if "--fast_multihead_attn" in sys.argv:
     _, bare_metal_major, bare_metal_minor = get_cuda_bare_metal_version(CUDA_HOME)
     if int(bare_metal_major) >= 11:
         cc_flag.append("-gencode")
-        cc_flag.append("arch=compute_80,code=sm_80")
+        cc_flag.append("arch=compute_90,code=sm_90")
+        # cc_flag.append("arch=compute_80,code=sm_80")
         if int(bare_metal_minor) > 0:
             cc_flag.append("-gencode")
             cc_flag.append("arch=compute_86,code=sm_86")
